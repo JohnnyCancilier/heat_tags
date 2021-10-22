@@ -1,6 +1,8 @@
 defmodule HeatTagsWeb.ErrorView do
   use HeatTagsWeb, :view
 
+  import Ecto.Changeset, only: [traverse_errors: 2]
+
   alias Ecto.Changeset
 
   # If you want to customize a particular status code
@@ -17,6 +19,14 @@ defmodule HeatTagsWeb.ErrorView do
   end
 
   def render("error.json", %{result: %Changeset{} = changeset}) do
-    %{result: changeset}
+    %{result: translate_erros(changeset)}
+  end
+
+  defp translate_erros(changeset) do
+    traverse_errors(changeset, fn {msg, opts} ->
+      Enum.reduce(opts, msg, fn {key, value}, acc ->
+        String.replace(acc, "%{#{key}}", to_string(value))
+      end)
+    end)
   end
 end
