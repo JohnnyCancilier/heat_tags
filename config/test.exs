@@ -7,9 +7,10 @@ import Config
 # Run `mix help test` for more information.
 config :heat_tags, HeatTags.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "2344",
   database: "heat_tags_test#{System.get_env("MIX_TEST_PARTITION")}",
   hostname: "localhost",
+  port: 5432,
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 
