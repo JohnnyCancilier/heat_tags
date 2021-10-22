@@ -3,7 +3,7 @@ defmodule HeatTags.Repo.Migrations.CreateMessages do
 
   def change do
     create table(:messages) do
-      add :messages, :string
+      add :message, :string
       add :username, :string
       add :email, :string
 
