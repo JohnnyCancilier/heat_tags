@@ -8,6 +8,7 @@ defmodule HeatTags.Tags.Count do
       message.message
       |> String.split()
       |> Enum.frequencies()
+      |> IO.inspect()
     end)
     |> Enum.reduce(%{}, fn elem, acc -> sum_values(elem, acc) end)
   end
